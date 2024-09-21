@@ -1,0 +1,13 @@
+Task in Gau's day
+
+- listen english (20p) x
+- speak(english 15-20p)
+- 1 data structure(optional)(30p) x
+- 1 algorythm(at least)(30p) x  
+- Reactjs (30p-45p) 
+- WebApi - Asp.net(2h) 
+- Code GauShop(2h) ádasd
+
+Total: 6h
+
+(Implement in 5h)

@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+<div>
+    <h3 style="color: red">@ViewBag.Message</h3>
+    <form method="post" action="Check" enctype="multipart/form-data">
+        <label>Choose a file:</label>
+        <input type="file" name="file" value="Choose a file" /><br />
+        <input type="submit" value="Upload" />
+    </form>
+
+    <!-- HTML -->
+    <div class="video-container">
+        <video controls>
+            <source src="~/uploads/video.mp4" type="video/mp4" />
+        </video>
+    </div>
+    <style>
+        /* CSS */
+        .video-container {
+            max-width: 800px; /* Đặt kích thước tối đa của video container */
+            margin: 0 auto; /* Căn giữa video container */
+        }
+
+        video {
+            width: 100%; /* Kích thước video để tương thích với video container */
+            height: auto; /* Đảm bảo tỷ lệ chiều cao/chiều rộng tự động */
+            border: 1px solid #ccc; /* Viền xung quanh video */
+        }
+
+    </style>
+
+</div>
