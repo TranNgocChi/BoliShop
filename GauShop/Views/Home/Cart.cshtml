@@ -1,6 +1,6 @@
 ﻿@model BusinessObject.HomeViewModel.HomeModel;
 
-<header class="site-header section-padding-img site-header-image" style="background-color: #3b5d50;">
+@* <header class="site-header section-padding-img site-header-image">
     <div class="container">
         <div class="row">
 
@@ -14,127 +14,137 @@
             </div>
         </div>
     </div>
-    <img src="~/images/header/businesspeople-meeting-office-working.jpg" class="header-image img-fluid" alt="">
-</header>
-@if (Model.cartItems.Count > 0){
-<section class="cart section-padding">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="table-responsive">
-                    <!-- Sử dụng lớp responsive của Bootstrap -->
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Image</th> <!-- Sử dụng scope="col" cho tiêu đề cột -->
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Remove</th>
-                                <th scope="col">Choose</th>
-                            </tr>
-                        </thead>
+    <img src="~/images/header/cart.png" class="header-image img-fluid" alt="">
+</header> *@
+<div class="site-header " style="background-color:#fff;">
+    @if (Model.cartItems.Count > 0)
+    {
+        <section class="cart section-padding">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="table-responsive">
+                        <!-- Sử dụng lớp responsive của Bootstrap -->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Image</th> <!-- Sử dụng scope="col" cho tiêu đề cột -->
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Remove</th>
+                                    <th scope="col">Choose</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            @foreach(var ct in Model.cartItems){
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <img src="~/@ct.product.image" alt="Image" class="img-fluid">
-                                </td>
-                                <td class="product-name">
-                                    <h2 class="h5 text-black" style="display: block;">
-                                        <strong style="display: block;">@ct.product.name</strong>
-                                        <p style="margin-top:5px; color: grey; text-align:center;">
-                                            @ct.size - @ct.color
-                                        </p>
-                                    </h2>
-                                </td>
+                            <tbody>
+                                @foreach (var ct in Model.cartItems)
+                                {
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="~/@ct.product.image" alt="Image" class="img-fluid">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h5 text-black" style="display: block;">
+                                                <strong style="display: block;">@ct.product.name</strong>
+                                                <p style="margin-top:5px; color: grey; text-align:center;">
+                                                    @ct.size - @ct.color
+                                                </p>
+                                            </h2>
+                                        </td>
 
-                                <td class="product-price">@ct.product.price VND</td>
-                                <td class="product-quantity" style="display: flex; justify-content: center">
-                                    <div class="input-group-prepend">
-                                        <button id ="decreaseButton" class="btn btn-outline-black decrease" type="button" onclick="updateQuantity('@ct.product.id@ct.size@ct.color', 'decrease')">&minus;</button>
-                                    </div>
-                                        <input type="number" class="form-control text-center quantity-amount" style="max-width: 50px;" name="productQuantity" value="@ct.quantity" aria-describedby="button-addon1" data-product-id="@ct.product.id@ct.size@ct.color">
-                                    <div class="input-group-append">
-                                        <button id="increaseButton" class="btn btn-outline-black increase" type="button" onclick="updateQuantity('@ct.product.id@ct.size@ct.color', 'increase')">&plus;</button>
-                                    </div>
-                                </td>
+                                        <td class="product-price">@(ct.product.price) VND</td>
+                                        <td class="product-quantity" style="display: flex; justify-content: center">
+                                            <div class="input-group-prepend">
+                                                <button id="decreaseButton" class="btn btn-outline-black decrease" type="button" onclick="updateQuantity('@ct.product.id@ct.size@ct.color', 'decrease')">&minus;</button>
+                                            </div>
+                                            <input type="number" class="form-control text-center quantity-amount" style="max-width: 50px;" name="productQuantity" value="@ct.quantity" aria-describedby="button-addon1" data-product-id="@ct.product.id@ct.size@ct.color">
+                                            <div class="input-group-append">
+                                                <button id="increaseButton" class="btn btn-outline-black increase" type="button" onclick="updateQuantity('@ct.product.id@ct.size@ct.color', 'increase')">&plus;</button>
+                                            </div>
+                                        </td>
 
-                                <td class="product-total" data-product-id="@ct.product.id@ct.size@ct.color"> @(ct.product.price * ct.quantity) VND</td>
-                                <td class="product-remove">
-                                    <a href="/remove-item?idProduct=@ct.product.id&sizeProduct=@ct.size&colorProduct=@ct.color" class="btn btn-black btn-sm">
-                                        X
-                                    </a>
-                                </td>
-                                <td class="product-choose">
-                                    <input type="checkbox" onchange="updateSelectedItem('@ct.product.id@ct.size@ct.color')" id="@ct.product.id@ct.size@ct.color" @(ct.selected ? "checked" : "") />
-                                </td>
-                                
-                            </tr>
-                            <tr class="spacer-row"></tr>
-                            }
-                        </tbody>
-                    </table>
+                                        <td class="product-total" data-product-id="@ct.product.id@ct.size@ct.color"> @(ct.product.price * ct.quantity) VND</td>
+
+                                        <td class="product-remove">
+                                            <a href="/remove-item?idProduct=@ct.product.id&sizeProduct=@ct.size&colorProduct=@ct.color" class="btn btn-black btn-sm">
+                                                X
+                                            </a>
+                                        </td>
+                                        <td class="product-choose">
+                                            <input type="checkbox" onchange="updateSelectedItem('@ct.product.id@ct.size@ct.color')" id="@ct.product.id@ct.size@ct.color" @(ct.selected ? "checked" : "") />
+                                        </td>
+
+                                    </tr>
+                                    <tr class="spacer-row"></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-        </div>
-        
-            <div class="row">
-            <div class="col-md-6">
+
                 <div class="row">
-                    <div class="col-md-12">
-                        <label class="text-black h4" style="font-weight: bold;" for="coupon">Coupon</label>
-                        <p>Enter your coupon code if you have one.</p>
-                    </div>
-                    <div class="col-md-8 mb-3 mb-md-0">
-                        <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-                    </div>
-                    <div class="col-md-4">
-
-                        <button class="btn btn-black">Apply Coupon</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 pl-5">
-                <div class="row justify-content-end">
-                    <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-12 text-right border-bottom mb-5">
-                                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <span class="text-black">Subtotal</span>
-                            </div>
-                            <div class="col-md-6 text-right cart-total">
-                                <strong class="text-black">@Model.cart.total VND</strong>
-                            </div>
-                        </div>
-                        <div class="row mb-5">
-                            <div class="col-md-6">
-                                <span class="text-black">Total</span>
-                            </div>
-                            <div class="col-md-6 text-right total">
-                                    <strong class="text-black">@Model.cart.total VND</strong>
-                            </div>
-                        </div>
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12">
-                                <form method="POST" asp-action="ViewOrder" asp-controller="Order">
-                                    <button class="btn btn-black btn-lg py-3 btn-block">Proceed To Checkout</button>
-                                </form>
+                                <label class="text-black h4" style="font-weight: bold;" for="coupon">Coupon</label>
+                                <p>Enter your coupon code if you have one.</p>
+                            </div>
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                            </div>
+                            <div class="col-md-4">
+
+                                <button class="btn btn-black">Apply Coupon</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-5">
+                        <div class="row justify-content-end">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-12 text-right border-bottom mb-5">
+                                        <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <span class="text-black">Subtotal</span>
+                                    </div>
+                                    <div class="col-md-6 text-right cart-total">
+                                        <strong class="text-black">@(Model.cart.total) VND</strong>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-md-6">
+                                        <span class="text-black">Total</span>
+                                    </div>
+                                    <div class="col-md-6 text-right total">
+                                        <strong class="text-black">@(Model.cart.total) VND</strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form method="POST" asp-action="ViewOrder" asp-controller="Order">
+                                            <button class="btn btn-black btn-lg py-3 btn-block">Proceed To Checkout</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-}else{
-    <h1>Your Cart don't have any items</h1>
-}
+        </section>
+    }
+    else
+    {
+        <h2 class="text-none">Your Cart don't have any items</h2>
+    }
+    
+</div>
+
+
 <script>
     function updateQuantity(productId, action) {
         // Gửi danh sách selectedProducts qua controller thông qua Ajax
@@ -399,5 +409,9 @@
         height: 20px; /* Độ cao */
         margin: 0 auto; /* Căn giữa theo chiều ngang */
         border-radius: 3px; /* Bo tròn góc */
+    }
+
+    .text-none{
+        text-align:center;
     }
 </style>

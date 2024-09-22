@@ -53,7 +53,10 @@
                                     <p class="product-p">@p.type</p>
                                 </div>
 
-                                <small class="product-price text-muted ms-auto">@p.price VND</small>
+                                <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 20px;">
+                                    @p.price VND
+                                 </strong>
+                                
                             </div>
                         </div>
                     </div>
@@ -78,14 +81,16 @@
 
                         <div class="product-info d-flex">
                             <div>
-                                <h5 class="product-title mb-0">
+                                    <strong class="product-title mb-0" style="font-size: 20px;">
                                     <a asp-action="ViewProductDetail" asp-controller="Product" asp-route-id="@p.id" class="product-title-link">@p.name</a>
-                                </h5>
+                                </strong>
 
                                 <p class="product-p">@p.type</p>
                             </div>
 
-                            <small class="product-price text-muted ms-auto">@p.price VND</small>
+                                <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 20px;">
+                                    @p.price VND
+                                </strong>
                         </div>
                     </div>
                     </div>

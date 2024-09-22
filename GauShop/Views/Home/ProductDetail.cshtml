@@ -34,34 +34,37 @@
                     <div class="col-lg-6 col-12">
                         <div class="product-info d-flex">
                         <div>
-                            <h2 class="product-title mb-0">@foundProduct.name</h2>
+                            <h4 class="product-title mb-0">@foundProduct.name</h4>
 
                             <p class="product-p">@foundProduct.type</p>
+                            <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 30px;">
+                                @foundProduct.price VND                                    
+                            </strong>
                         </div>
 
-                        <small class="product-price text-muted ms-auto mt-auto mb-5">@foundProduct.price VND</small>
+                        
                     </div>
 
                     <div class="product-description">
 
-                        <strong class="d-block mt-4 mb-2">Description</strong>
+                        <h5 class="d-block mb-2">Description</h5>
 
-                        <p class="lead mb-5" style="color: black;">@foundProduct.description</p>
+                        <p class=" mb-5" style="color: black;">@foundProduct.description</p>
                     </div>
                     <div class="product-cart-thumb row">
                         <form class="addtocart-form" method="POST" asp-action="AddToCart" asp-controller="Cart">
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3" style="display: flex;">
-                                    <label for="sizeButtons" class="form-label" style="margin-right: 15px;">Size: </label>
+                                    <label for="sizeButtons" class="form-label" style="margin-right: 15px; margin-top: 5px;">Size: </label>
                                     <div class="btn-group" role="group" aria-label="Size" id="sizeButtons">
                                         <input type="radio" class="btn-check" name="size" id="sizeX" autocomplete="off" value="X">
-                                        <label class="btn btn-secondary btn-size" for="sizeX">8</label>
+                                        <label class="btn btn-size" for="sizeX">8</label>
 
                                         <input type="radio" class="btn-check" name="size" id="sizeXXL" autocomplete="off" value="XXL">
-                                        <label class="btn btn-secondary btn-size" for="sizeXXL">9</label>
+                                        <label class="btn btn-size" for="sizeXXL">9</label>
 
                                         <input type="radio" class="btn-check" name="size" id="sizeXXXL" autocomplete="off" value="XXXL">
-                                        <label class="btn btn-secondary btn-size" for="sizeXXXL">10</label>
+                                        <label class="btn btn-size" for="sizeXXXL">10</label>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -93,7 +96,7 @@
                             <div class="col-lg-6 col-12 mt-4 mt-lg-0">
                             
                                 <input type="hidden" name="id" value="@foundProduct.id" />
-                                <button type="submit" class="btn custom-btn cart-btn">Add to Cart</button>
+                                <button type="submit" class="btn custom-btn cart-btn" >Add to Cart</button>
 
                                 <div id="popupModal" class="popup-modal">
                                     <div class="popup-content">
@@ -150,20 +153,22 @@
                         <div class="product-info d-flex">
                             <div>
                                 <h5 class="product-title mb-0">
-                                    <a href="product-detail.html" class="product-title-link">Tree pot</a>
+                                    <a href="product-detail" class="product-title-link">Tree pot</a>
                                 </h5>
 
                                 <p class="product-p">Original package design from house</p>
                             </div>
 
-                            <small class="product-price text-muted ms-auto mt-auto mb-5">$25</small>
+                        <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 20px;">
+                            25 VND
+                        </strong>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-12 mb-3">
                     <div class="product-thumb">
-                        <a href="product-detail.html">
+                        <a href="product-detail">
                             <img src="~/images/product/jordan-nix-CkCUvwMXAac-unsplash.jpeg" class="img-fluid product-image" alt="">
                         </a>
 
@@ -176,13 +181,15 @@
                         <div class="product-info d-flex">
                             <div>
                                 <h5 class="product-title mb-0">
-                                    <a href="product-detail.html" class="product-title-link">Fashion set</a>
+                                    <a href="product-detail" class="product-title-link">Fashion set</a>
                                 </h5>
 
                                 <p class="product-p">Costume package</p>
                             </div>
 
-                            <small class="product-price text-muted ms-auto mt-auto mb-5">$35</small>
+                        <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 20px;">
+                            35 VND
+                        </strong>
                         </div>
                     </div>
                 </div>
@@ -200,13 +207,15 @@
                         <div class="product-info d-flex">
                             <div>
                                 <h5 class="product-title mb-0">
-                                    <a href="product-detail.html" class="product-title-link">Juice Drinks</a>
+                                    <a href="product-detail" class="product-title-link">Juice Drinks</a>
                                 </h5>
 
                                 <p class="product-p">Nature made another world</p>
                             </div>
 
-                            <small class="product-price text-muted ms-auto mt-auto mb-5">$45</small>
+                        <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 20px;">
+                            50 VND
+                        </strong>
                         </div>
                     </div>
                 </div>
@@ -277,10 +286,30 @@
     }
 
     .btn-size {
-        color: white;
+        color: #000;
         font-weight: bold;
-        border: 1px black;
-        background: orange;
+        border: 1px solid #fff;
+        margin: 0 2px;
+        background-color: #fff;
+        font-size:20px;
+    }
+    .btn-size:hover{
+            background-color: #ff4400;
+            font-weight:bold;
+            
+    }
+
+
+
+    input[type="radio"]:checked + .btn-size {
+        background-color: #ff4400;
+        color: #fff;
+        font-weight: bold;
+    }
+    .cart-btn{
+        background-color: #ff4400;
+        border-radius:5px;
+        font-weight:bold;
     }
 
     /* CSS để tùy chỉnh dropdown */
@@ -310,8 +339,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8); /* Màu nền mờ */
-            border: 2px solid #007bff;
+            background-color: #fff; /* Màu nền mờ */
+            border: 2px solid #000;
             border-radius: 10px;
             z-index: 1000;
             padding: 30px;
@@ -335,7 +364,7 @@
 
         .popup-title {
             margin: 0;
-            color: #007bff;
+            color: #ff4400;
             font-size: 24px;
         }
 
@@ -356,7 +385,8 @@
         }
 
             .popup-body p {
-                color: orange; /* Màu cho các đoạn văn bản trong modal */
+            color: #ff4400; /* Màu cho các đoạn văn bản trong modal */
+            font-weight:500;
             }
 
         .text-success {
