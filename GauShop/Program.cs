@@ -1,6 +1,5 @@
 ﻿using BusinessObject.Models;
 using DataAccess.Context;
-using GauShop.ExternalServices;
 using GauShop.ExternalServices.MailService;
 using GauShop.ExternalServices.MailUtils;
 using GauShop.ExternalServices.VnPayService;
@@ -8,6 +7,8 @@ using GauShop.Helpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
+
+Environment.SetEnvironmentVariable("ASPNETCORE_ENVIROMENT", "Development", EnvironmentVariableTarget.Process);
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,6 @@
-﻿using BusinessObject.Models;
+﻿using Amazon.Runtime.Internal.Util;
+using Azure.Storage.Blobs;
+using BusinessObject.Models;
 using DataAccess.Repository.IObjectRepository;
 using DataAccess.Repository.ObjectRepository;
 using GauShop.Helpers;
@@ -135,12 +137,11 @@ namespace GauShop.Controllers
             CookieOptions cookieOption = new();
 
             //create user
-            User newUser = new User { UserName = nameUser, Email = emailUser };
-            _userRepository.Create(newUser);
-            User? foundUser = _userRepository.GetByEmail(emailUser);
+            User foundUser = _userRepository.GetByEmail(emailUser);
             if (!_userRepository.IsEmailExists(emailUser))
             {
-                
+                User newUser = new User { UserName = nameUser, Email = emailUser };
+                _userRepository.Create(newUser);
                 //Create cart
                 cartRepository.Create(new Cart { userId = newUser.Id, cartitems = new List<CartItem>() });
                 //Create Session and Save to Redis

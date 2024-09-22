@@ -17,7 +17,7 @@
     <img src="~/images/header/cart.png" class="header-image img-fluid" alt="">
 </header> *@
 <div class="site-header " style="background-color:#fff;">
-    @if (Model.cartItems.Count > 0)
+    @if (Model.cartItems?.Count > 0)
     {
         <section class="cart section-padding">
             <div class="container">
@@ -112,7 +112,7 @@
                                         <span class="text-black">Subtotal</span>
                                     </div>
                                     <div class="col-md-6 text-right cart-total">
-                                        <strong class="text-black">@(Model.cart.total) VND</strong>
+                                        <strong class="text-black">@(Model.cart?.total) VND</strong>
                                     </div>
                                 </div>
                                 <div class="row mb-5">
@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form method="POST" asp-action="ViewOrder" asp-controller="Order">
+                                        <form asp-action="ViewOrder" asp-controller="Order">
                                             <button class="btn btn-black btn-lg py-3 btn-block">Proceed To Checkout</button>
                                         </form>
                                     </div>
@@ -139,7 +139,9 @@
     }
     else
     {
+        <br/>
         <h2 class="text-none">Your Cart don't have any items</h2>
+        <br/>
     }
     
 </div>
@@ -147,6 +149,7 @@
 
 <script>
     function updateQuantity(productId, action) {
+        console.log('test');
         // Gửi danh sách selectedProducts qua controller thông qua Ajax
         $.ajax({
             url: '/update-quantity',
@@ -158,9 +161,9 @@
                 var total = response.cartitem.product.price*response.cartitem.quantity;
                 var carttotal = response.cart.total;
 
-                $('.cart-total strong').text('VND' + carttotal.toFixed(2));
-                $('.total strong').text('VND' + carttotal.toFixed(2));
-                $('.product-total[data-product-id="' + productId + '"]').text('VND' + total.toFixed(2));
+                $('.cart-total strong').text(carttotal.toFixed(2) + ' VND');
+                $('.total strong').text(carttotal.toFixed(2) + ' VND');
+                $('.product-total[data-product-id="' + productId + '"]').text(total.toFixed(2) + ' VND');
                 $('.quantity-amount[data-product-id="' + productId + '"]').val(quantity);
                 console.log('Danh sách sản phẩm được cập nhật thành công.');
             },
@@ -211,8 +214,8 @@
             success: function (response) {
                 var carttotal = response.cart.total;
 
-                $('.cart-total strong').text('VND' + carttotal.toFixed(2));
-                $('.total strong').text('VND' + carttotal.toFixed(2));
+                $('.cart-total strong').text(carttotal.toFixed(2) + ' VND');
+                $('.total strong').text(carttotal.toFixed(2) + ' VND');
                 console.log('Danh sách sản phẩm được cập nhật thành công.');
             },
             error: function (xhr, status, error) {
@@ -229,8 +232,8 @@
             success: function (response) {
                 var carttotal = response.cart.total;
 
-                $('.cart-total strong').text(carttotal.toFixed(2) + 'VND');
-                $('.total strong').text(carttotal.toFixed(2) + 'VND');
+                $('.cart-total strong').text(carttotal.toFixed(2) + ' VND');
+                $('.total strong').text(carttotal.toFixed(2) + ' VND');
                 console.log('Danh sách sản phẩm được cập nhật thành công.');
             },
             error: function (xhr, status, error) {

@@ -3,6 +3,7 @@
 
     @{
         var foundProduct = Model.product;
+        var popularProducts = Model.products?.OrderBy(p => Guid.NewGuid()).Take(6).ToList();
     }
 
     <header class="site-header section-padding d-flex justify-content-center align-items-center">
@@ -137,43 +138,16 @@
                 <div class="col-12">
                     <h3 class="mb-5">You might also like</h3>
                 </div>
-
+                @foreach (var p in popularProducts)
+                {
                 <div class="col-lg-4 col-12 mb-3">
                     <div class="product-thumb">
-                        <a href="product-detail.html">
-                            <img src="~/images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" class="img-fluid product-image" alt="">
+                        <a asp-action="ViewProductDetail" asp-controller="Product" asp-route-id="@p.id">
+                            <img src="~/@p.image" class="img-fluid product-image" alt="">
                         </a>
 
                         <div class="product-top d-flex">
-                            <span class="product-alert me-auto">New arrival</span>
-
-                            <a href="#" class="bi-heart-fill product-icon"></a>
-                        </div>
-
-                        <div class="product-info d-flex">
-                            <div>
-                                <h5 class="product-title mb-0">
-                                    <a href="product-detail" class="product-title-link">Tree pot</a>
-                                </h5>
-
-                                <p class="product-p">Original package design from house</p>
-                            </div>
-
-                        <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 20px;">
-                            25 VND
-                        </strong>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-12 mb-3">
-                    <div class="product-thumb">
-                        <a href="product-detail">
-                            <img src="~/images/product/jordan-nix-CkCUvwMXAac-unsplash.jpeg" class="img-fluid product-image" alt="">
-                        </a>
-
-                        <div class="product-top d-flex">
-                            <span class="product-alert">Low Price</span>
+                            <span class="product-alert">@p.featured</span>
 
                             <a href="#" class="bi-heart-fill product-icon ms-auto"></a>
                         </div>
@@ -181,44 +155,17 @@
                         <div class="product-info d-flex">
                             <div>
                                 <h5 class="product-title mb-0">
-                                    <a href="product-detail" class="product-title-link">Fashion set</a>
+                                    <a asp-action="ViewProductDetail" asp-controller="Product" asp-route-id="@p.id" class="product-title-link">@p.name</a>
                                 </h5>
 
-                                <p class="product-p">Costume package</p>
+                                <p class="product-p">@p.type</p>
                             </div>
 
-                        <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 20px;">
-                            35 VND
-                        </strong>
+                            <small class="product-price text-muted ms-auto">@p.price VND</small>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-12">
-                    <div class="product-thumb">
-                        <a href="product-detail.html">
-                            <img src="~/images/product/nature-zen-3Dn1BZZv3m8-unsplash.jpeg" class="img-fluid product-image" alt="">
-                        </a>
-
-                        <div class="product-top d-flex">
-                            <a href="#" class="bi-heart-fill product-icon ms-auto"></a>
-                        </div>
-
-                        <div class="product-info d-flex">
-                            <div>
-                                <h5 class="product-title mb-0">
-                                    <a href="product-detail" class="product-title-link">Juice Drinks</a>
-                                </h5>
-
-                                <p class="product-p">Nature made another world</p>
-                            </div>
-
-                        <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 20px;">
-                            50 VND
-                        </strong>
-                        </div>
-                    </div>
-                </div>
+                }
 
             </div>
         </div>

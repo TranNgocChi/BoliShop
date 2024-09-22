@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace BusinessObject.VNProvince;
 
@@ -26,7 +24,7 @@ public partial class VietnameseAdministrativeUnitsContext : DbContext
     public virtual DbSet<Ward> Wards { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Server=localhost;Database=vietnamese_administrative_units;Port=5432;UserId=postgres;Password=231103;");
+        => optionsBuilder.UseNpgsql("Server=pgboli.postgres.database.azure.com;Database=vietnamese_administrative_units;Port=5432;User Id=gaugau;Password=Brightsun2003*;Ssl Mode=Require;Trust Server Certificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

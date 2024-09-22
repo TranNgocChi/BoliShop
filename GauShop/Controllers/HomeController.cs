@@ -22,6 +22,7 @@ namespace GauShop.Controllers
 
         private readonly IUserRepository _userRepository = new UserRepository();
         private readonly ICartRepository _cartRepository = new CartRepository();
+        private readonly IProductRepository _productRepository = new ProductRepository();
         public HomeController(ILogger<HomeController> logger, SessionHelper sessionHelper, IDistributedCache sessionCache)
         {
             _sessionHelper = sessionHelper;
@@ -33,6 +34,7 @@ namespace GauShop.Controllers
         public async Task<IActionResult> Index()
         {
             var model = await _sessionHelper.GetHomeModel();
+            model.products = _productRepository.ShowAll();
             return View(model);
         } 
 

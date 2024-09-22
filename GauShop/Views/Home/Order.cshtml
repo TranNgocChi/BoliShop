@@ -192,7 +192,7 @@
 					document.getElementById("c_district").appendChild(option);
 				}
 				if (document.getElementById("c_city").value == '00') {
-					$('.shipping').text(0 + 'VND');
+					$('.shipping').text(0 + ' VND');
 					document.getElementById("c_town").innerHTML = "";
 					var option = document.createElement("option");
 					option.value = "0000";
@@ -278,12 +278,12 @@
 						} else {
 							shipping = 70;
 						}
-						$('.shipping').text(shipping + 'VND');
+						$('.shipping').text(shipping + ' VND');
 
 						var cartTotal = $(".text-black.cart-total").text().replace("$", "");
 						var total = shipping + parseFloat(cartTotal);
 
-						$('.total strong').text(total + 'VND');
+						$('.total strong').text(total + ' VND');
 						document.getElementById("totalPriceInput").value = total;
 						document.getElementById("shipping").value = shipping;
 					} else {
