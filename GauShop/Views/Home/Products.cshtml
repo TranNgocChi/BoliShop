@@ -14,8 +14,8 @@
 
             <div class="col-lg-10 col-12">
                 <h1>
-                    <span class="d-block text-primary">Choose your</span>
-                    <span class="d-block text-dark">favorite stuffs</span>
+                    <span class="d-block text-primary">Hãy Chọn</span>
+                    <span class="d-block text-dark">Sản Phẩm Yêu Thích</span>
                 </h1>
             </div>
         </div>
@@ -28,7 +28,7 @@
             @if (Model.products != null)
             {
                 <div class="col-12">
-                    <h2 class="mb-5">New Arrivals</h2>
+                    <h2 class="mb-5">Sản Phẩm Mới</h2>
                 </div>
                 @foreach (var p in newProducts)
                 {
@@ -63,7 +63,7 @@
                 }
                     
                 <div class="col-12">
-                    <h2 class="mb-5">Popular</h2>
+                    <h2 class="mb-5">Phổ Biến</h2>
                 </div>
                 @foreach(var p in popularProducts)
                 {
@@ -98,7 +98,7 @@
             }
             else
             {
-                <h2 style="color: red;">Don't have any products!</h2>
+                <h2 style="color: red;">Không có sản phẩm nào!</h2>
             }
         </div>
     </div>

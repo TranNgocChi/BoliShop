@@ -24,20 +24,20 @@
 			<form method="POST" asp-action="HandleOrder" asp-controller="Order">
 			<div class="row">
 				<div class="col-md-6 mb-5 mb-md-0">
-					<h2 class="h3 mb-3 text-black" style="font-weight: bold">Billing Details</h2>
+						<h2 class="h3 mb-3 text-black" style="font-weight: bold">Chi tiết thanh toán</h2>
 					<div class="p-3 p-lg-5 border bg-white">
 						<div class="form-group">
-							<label for="c_country" class="text-black">Country <span class="text-danger">*</span></label>
+							<label for="c_country" class="text-black">Quốc Gia <span class="text-danger">*</span></label>
 							<select id="c_country" name="c_country" class="form-control">
 								<option selected>VietNam</option>
 							</select>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-12">
-								<label for="c_city" class="text-black">City <span class="text-danger">*</span></label>
+								<label for="c_city" class="text-black">Thành Phố <span class="text-danger">*</span></label>
 
 								<select id="c_city" name="c_city" class="form-control" onchange="SelectedCity()" required>
-									<option value="00" selected>Select a city</option>
+									<option value="00" selected>Chọn Thành Phố</option>
 									@foreach (var province in Model.vNMap.provinces)
 									{
 										<option name="@province.Name" value="@province.Code">@province.Name</option>
@@ -46,41 +46,41 @@
 							</div>
 							
 							<div class="col-md-12">
-								<label for="c_district" class="text-black">District <span class="text-danger">*</span></label>
+								<label for="c_district" class="text-black">Quận/Huyện <span class="text-danger">*</span></label>
 									<select id="c_district" name="c_district" class="form-control" onchange="SelectedDistrict()" required>
-									<option name="" value="000">Select a district</option>
+										<option name="" value="000">Chọn Quận/Huyện</option>
 								</select>
 							</div>
 							<div class="col-md-12">
-								<label for="c_town" class="text-black">Town <span class="text-danger">*</span></label>
+								<label for="c_town" class="text-black">Phường/Xã <span class="text-danger">*</span></label>
 									<select id="c_town" name="c_town" class="form-control" onchange="SelectedTown()" required>
-									<option name="" value="0000">Select a town</option>
+										<option name="" value="0000">Chọn Phường/Xã</option>
 	
 								</select>
 							</div>
 							<div class="col-md-12">
-								<label for="c_address" class="text-black">Address <span class="text-danger">*</span></label>
+								<label for="c_address" class="text-black">Địa Chỉ(Tên Đường) <span class="text-danger">*</span></label>
 									<input type="text" class="form-control" id="c_address" name="c_address" placeholder="Detail address" required>
 							</div>
 							<div class="col-md-12">
-								<label for="c_address" class="text-black">Phone <span class="text-danger">*</span></label>
+								<label for="c_address" class="text-black">Điện Thoại <span class="text-danger">*</span></label>
 									<input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Phone Number" required>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="c_order_notes" class="text-black">Order Notes</label>
+								<label for="c_order_notes" class="text-black">Ghi chú</label>
 							<textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
 						</div>
 
 					</div>
 
 					<div class="p-3 p-lg-5 border bg-white">
-						<h2 class="h3 mb-3 text-black" style="font-weight: bold;">Delivery Address</h2>
+							<h2 class="h3 mb-3 text-black" style="font-weight: bold;">Địa chỉ giao hàng</h2>
 						<select id="" name="" class="form-control" style="cursor: pointer">
 							<option value="payment_delivery" selected>Viet Nam - Quang Binh - Quang Ninh -
 								Hien Ninh - Truong Duc</option>
-							<option value="payment_online">Payment online VnPay</option>
+								<option value="payment_online">Thanh toán trực tuyến VnPay</option>
 						</select>
 					</div>
 					
@@ -90,14 +90,14 @@
 
 					<div class="row mb-5">
 						<div class="col-md-12">
-							<h2 class="h3 mb-3 text-black" style="font-weight: bold;">Coupon Code</h2>
+							<h2 class="h3 mb-3 text-black" style="font-weight: bold;">Mã Giảm Giá</h2>
 							<div class="p-3 p-lg-5 border bg-white">
 
-								<label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
+									<label for="c_code" class="text-black mb-3">Nhập mã phiếu giảm giá của bạn nếu bạn có</label>
 								<div class="input-group w-75 couponcode-wrap">
 									<input type="text" class="form-control me-2" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
 									<div class="input-group-append">
-										<button class="btn btn-black btn-sm" type="button" id="button-addon2">Apply</button>
+										<button class="btn btn-black btn-sm" type="button" id="button-addon2">Áp Dụng</button>
 									</div>
 								</div>
 
@@ -107,12 +107,12 @@
 
 					<div class="row mb-5">
 						<div class="col-md-12">
-							<h2 class="h3 mb-3 text-black" style="font-weight: bold;">Your Order</h2>
+								<h2 class="h3 mb-3 text-black" style="font-weight: bold;">Đơn hàng của bạn</h2>
 							<div class="p-3 p-lg-5 border bg-white">
 								<table class="table site-block-order-table mb-5">
 									<thead>
-									<th>Product</th>
-									<th>Total</th>
+									<th>Sản Phẩm</th>
+									<th>Tổng Cộng</th>
 									</thead>
 									<tbody>
 										@foreach(var item in Model.cartOrder.cartitems){
@@ -127,16 +127,16 @@
 										}
 										<tr>
 											<td class="text-black font-weight-bold">
-												<strong style="color: blue;">Shipping</strong>
+													<strong style="color: blue;">Vận chuyển</strong>
 											</td>
 												<td class="text-black shipping">0 VND</td>
 										</tr>
 										<tr>
-											<td class="text-black font-weight-bold"><strong style="color: #FF4400;">Cart Subtotal</strong></td>
+												<td class="text-black font-weight-bold"><strong style="color: #FF4400;">Tổng cộng giỏ hàng</strong></td>
 												<td class="text-black cart-total"> @Model.cartOrder.total VND</td>
 										</tr>
 										<tr style="background: grey;">
-											<td class="text-black font-weight-bold"><strong style="color: red;">Order Total</strong></td>
+												<td class="text-black font-weight-bold"><strong style="color: red;">Tổng đơn hàng</strong></td>
 												<td class="text-black font-weight-bold total"><strong>@Model.cartOrder.total VND</strong></td>
 										</tr>
 										
@@ -146,7 +146,7 @@
 									<input type="hidden" id="totalPriceInput" name="totalPrice" value="" />
 									<input type="hidden" id="shipping" name="shipping" value="" />
 								<div class="form-group">
-									<button class="btn btn-black btn-lg py-3 btn-block">Place Order</button>
+										<button class="btn btn-black btn-lg py-3 btn-block">Đặt hàng</button>
 								</div>
 
 							</div>
@@ -154,10 +154,10 @@
 					</div>
 
 					<div class="row mb-5">
-						<h2 class="h3 mb-3 text-black" style="font-weight: bold;">Payment Methods</h2>
+							<h2 class="h3 mb-3 text-black" style="font-weight: bold;">Phương thức thanh toán</h2>
 						<select id="payment_method" name="payment_method" class="form-control" style="cursor: pointer">
-							<option value="payment_delivery" selected>Payment on delivery</option>
-							<option value="payment_online">Payment online VnPay</option>
+								<option value="payment_delivery" selected>Thanh toán khi giao hàng</option>
+								<option value="payment_online">Thanh toán trực tuyến VnPay</option>
 						</select>
 					</div>
 				</div>
