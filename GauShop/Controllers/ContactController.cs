@@ -1,11 +1,8 @@
-﻿using Amazon.Runtime.SharedInterfaces;
-using BusinessObject.HomeViewModel;
-using GauShop.ExternalServices.MailService;
+﻿using GauShop.ExternalServices.MailService;
 using GauShop.ExternalServices.MailUtils;
 using GauShop.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Org.BouncyCastle.Asn1.Mozilla;
 
 namespace GauShop.Controllers
 {

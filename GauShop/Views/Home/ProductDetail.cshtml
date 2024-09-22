@@ -39,7 +39,7 @@
 
                             <p class="product-p">@foundProduct.type</p>
                             <strong class="product-price ms-auto mt-auto mb-5" style="color:#ff4400; font-size: 30px;">
-                                @foundProduct.price VND                                    
+                                @($"{foundProduct.price:N0}") VND                                    
                             </strong>
                         </div>
 
@@ -58,7 +58,7 @@
                                 <div class="mb-3" style="display: flex;">
                                     <label for="sizeButtons" class="form-label" style="margin-right: 15px; margin-top: 5px;">Kích Thước: </label>
                                     <div class="btn-group" role="group" aria-label="Size" id="sizeButtons">
-                                        <input type="radio" class="btn-check" name="size" id="sizeX" autocomplete="off" value="X">
+                                        <input type="radio" class="btn-check" name="size" id="sizeX" autocomplete="off" value="X" checked>
                                         <label class="btn btn-size" for="sizeX">8</label>
 
                                         <input type="radio" class="btn-check" name="size" id="sizeXXL" autocomplete="off" value="XXL">
@@ -161,7 +161,7 @@
                                 <p class="product-p">@p.type</p>
                             </div>
 
-                            <small class="product-price text-muted ms-auto">@p.price VND</small>
+                            <small class="product-price text-muted ms-auto">@($"{p.price:N0}") VND</small>
                         </div>
                     </div>
                 </div>

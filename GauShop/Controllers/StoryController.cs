@@ -1,8 +1,6 @@
-﻿using BusinessObject.HomeViewModel;
-using GauShop.Helpers;
+﻿using GauShop.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
-using System.Text;
 
 namespace GauShop.Controllers
 {
@@ -16,9 +14,11 @@ namespace GauShop.Controllers
         }
 
         [Route("/story")]
-        public async Task<IActionResult> ViewStory() {
+        public async Task<IActionResult> ViewStory()
+        {
             var model = await _sessionHelper.GetHomeModel();
             return View("Views/Home/Story.cshtml", model);
         }
+
     }
 }

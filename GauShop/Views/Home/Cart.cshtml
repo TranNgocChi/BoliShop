@@ -53,7 +53,7 @@
                                             </h2>
                                         </td>
 
-                                        <td class="product-price">@(ct.product.price) VND</td>
+                                        <td class="product-price">@($"{ct.product.price:N0}") VND</td>
                                         <td class="product-quantity" style="display: flex; justify-content: center">
                                             <div class="input-group-prepend">
                                                 <button id="decreaseButton" class="btn btn-outline-black decrease" type="button" onclick="updateQuantity('@ct.product.id@ct.size@ct.color', 'decrease')">&minus;</button>
@@ -64,7 +64,7 @@
                                             </div>
                                         </td>
 
-                                        <td class="product-total" data-product-id="@ct.product.id@ct.size@ct.color"> @(ct.product.price * ct.quantity) VND</td>
+                                        <td class="product-total" data-product-id="@ct.product.id@ct.size@ct.color">@($"{ct.product.price * ct.quantity:N0}") VND</td>
 
                                         <td class="product-remove">
                                             <a href="/remove-item?idProduct=@ct.product.id&sizeProduct=@ct.size&colorProduct=@ct.color" class="btn btn-black btn-sm">
@@ -112,7 +112,7 @@
                                         <span class="text-black">Tổng cộng</span>
                                     </div>
                                     <div class="col-md-6 text-right cart-total">
-                                        <strong class="text-black">@(Model.cart?.total) VND</strong>
+                                        <strong class="text-black">@($"{Model.cart?.total:N0}") VND</strong>
                                     </div>
                                 </div>
                                 <div class="row mb-5">
@@ -120,7 +120,7 @@
                                         <span class="text-black">Total</span>
                                     </div>
                                     <div class="col-md-6 text-right total">
-                                        <strong class="text-black">@(Model.cart.total) VND</strong>
+                                        <strong class="text-black">@($"{Model.cart?.total:N0}") VND</strong>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -156,15 +156,23 @@
             type: 'POST',
             data: { productId: productId, action:action },
             success: function (response) {
-                var productId = response.cartitem.product.id+response.cartitem.size+response.cartitem.color;
+                var productId = response.cartitem.product.id + response.cartitem.size + response.cartitem.color;
                 var quantity = response.cartitem.quantity;
-                var total = response.cartitem.product.price*response.cartitem.quantity;
+                var total = response.cartitem.product.price * response.cartitem.quantity;
                 var carttotal = response.cart.total;
 
-                $('.cart-total strong').text(carttotal.toFixed(2) + ' VND');
-                $('.total strong').text(carttotal.toFixed(2) + ' VND');
-                $('.product-total[data-product-id="' + productId + '"]').text(total.toFixed(2) + ' VND');
+                // Định dạng carttotal với dấu phân cách hàng nghìn
+                $('.cart-total strong').text(carttotal.toLocaleString('vi-VN') + ' VND');
+
+                // Định dạng tổng sản phẩm
+                $('.total strong').text(carttotal.toLocaleString('vi-VN') + ' VND');
+
+                // Định dạng tổng cho sản phẩm cụ thể
+                $('.product-total[data-product-id="' + productId + '"]').text(total.toLocaleString('vi-VN') + ' VND');
+
+                // Cập nhật số lượng
                 $('.quantity-amount[data-product-id="' + productId + '"]').val(quantity);
+
                 console.log('Danh sách sản phẩm được cập nhật thành công.');
             },
             error: function (xhr, status, error) {
@@ -214,8 +222,8 @@
             success: function (response) {
                 var carttotal = response.cart.total;
 
-                $('.cart-total strong').text(carttotal.toFixed(2) + ' VND');
-                $('.total strong').text(carttotal.toFixed(2) + ' VND');
+                $('.cart-total strong').text(carttotal.toLocaleString('vi-VN') + ' VND');
+                $('.total strong').text(carttotal.toLocaleString('vi-VN') + ' VND');
                 console.log('Danh sách sản phẩm được cập nhật thành công.');
             },
             error: function (xhr, status, error) {
@@ -232,8 +240,8 @@
             success: function (response) {
                 var carttotal = response.cart.total;
 
-                $('.cart-total strong').text(carttotal.toFixed(2) + ' VND');
-                $('.total strong').text(carttotal.toFixed(2) + ' VND');
+                $('.cart-total strong').text(carttotal.toLocaleString('vi-VN') + ' VND');
+                $('.total strong').text(carttotal.toLocaleString('vi-VN') + ' VND');
                 console.log('Danh sách sản phẩm được cập nhật thành công.');
             },
             error: function (xhr, status, error) {

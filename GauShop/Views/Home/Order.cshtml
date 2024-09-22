@@ -122,7 +122,7 @@
 												<span style="font-size: 14px;color: grey;">@item.size-@item.color</span>
 												<strong class="mx-2">x</strong> @item.quantity
 											</td>
-											<td>@(item.product.price*item.quantity) VND</td>
+											<td>@($"{item.product.price*item.quantity:N0}") VND</td>
 										</tr>
 										}
 										<tr>
@@ -133,11 +133,11 @@
 										</tr>
 										<tr>
 												<td class="text-black font-weight-bold"><strong style="color: #FF4400;">Tổng cộng giỏ hàng</strong></td>
-												<td class="text-black cart-total"> @Model.cartOrder.total VND</td>
+												<td class="text-black cart-total"> @($"{Model.cartOrder.total:N0}") VND</td>
 										</tr>
 										<tr style="background: grey;">
 												<td class="text-black font-weight-bold"><strong style="color: red;">Tổng đơn hàng</strong></td>
-												<td class="text-black font-weight-bold total"><strong>@Model.cartOrder.total VND</strong></td>
+												<td class="text-black font-weight-bold total"><strong>@($"{Model.cartOrder.total:N0}") VND</strong></td>
 										</tr>
 										
 									</tbody>
@@ -253,47 +253,59 @@
 		// Call OpenStreetMap Nominatim API to geocode the addresses
 		$.getJSON('https://nominatim.openstreetmap.org/search?format=json&q=' + origin, function (data1) {
 			if (data1.length > 0) {
-				var originLat = data1[0].lat;
-				var originLon = data1[0].lon;
+				var originLat = parseFloat(data1[0].lat);
+				var originLon = parseFloat(data1[0].lon);
 
 				$.getJSON('https://nominatim.openstreetmap.org/search?format=json&q=' + destination, function (data2) {
 					if (data2.length > 0) {
-						var destLat = data2[0].lat;
-						var destLon = data2[0].lon;
+						var destLat = parseFloat(data2[0].lat);
+						var destLon = parseFloat(data2[0].lon);
 
 						// Calculate distance between two points using Haversine formula
 						var distance = calculateHaversine(originLat, originLon, destLat, destLon);
 						console.log(distance);
 						var shipping = 0;
+
+						// Determine shipping cost based on distance
 						if (distance < 200) {
-							shipping = 10;
-						} else if (distance >= 200 && distance < 400) {
-							shipping = 20;
-						} else if (distance >= 400 && distance < 600) {
-							shipping = 30;
-						} else if (distance >= 600 && distance < 800) {
-							shipping = 40;
-						} else if (distance >= 800 && distance < 1000) {
-							shipping = 50
+							shipping = 10000;
+						} else if (distance < 400) {
+							shipping = 20000;
+						} else if (distance < 600) {
+							shipping = 30000;
+						} else if (distance < 800) {
+							shipping = 40000;
+						} else if (distance < 1000) {
+							shipping = 50000;
 						} else {
-							shipping = 70;
+							shipping = 70000;
 						}
-						$('.shipping').text(shipping + ' VND');
 
-						var cartTotal = $(".text-black.cart-total").text().replace("$", "");
-						var total = shipping + parseFloat(cartTotal);
+						// Update shipping cost display
+						$('.shipping').text(shipping.toLocaleString('vi-VN') + ' VND');
 
-						$('.total strong').text(total + ' VND');
-						document.getElementById("totalPriceInput").value = total;
-						document.getElementById("shipping").value = shipping;
+						// Get cart total and calculate final total
+						var cartTotal = $(".text-black.cart-total").text()
+							.replace("$", "")             
+							.replace(/\./g, "")          
+							.replace(",", ".");  					
+						var parsedCartTotal = parseFloat(cartTotal) || 0; // Convert to number safely
+						console.log(parsedCartTotal)
+						var total = shipping + parsedCartTotal;
+
+						// Update total display
+						$('.total strong').text(total.toLocaleString('vi-VN') + ' VND');
+						document.getElementById("totalPriceInput").value = total.toFixed(2); // Keep two decimal places
+						document.getElementById("shipping").value = shipping.toFixed(2); // Keep two decimal places
 					} else {
-
+						alert('Destination address not found');
 					}
 				});
 			} else {
 				alert('Origin address not found');
 			}
 		});
+
 	}
 
 	function calculateHaversine(lat1, lon1, lat2, lon2) {

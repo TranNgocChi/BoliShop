@@ -89,6 +89,10 @@
         </div>
     </div>
     <script>
+        if (window.location.hash === "#_=_" || window.location.hash === "#") {
+            window.location.hash = "";
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             var dropdownToggle = document.querySelector(".dropdown-toggle");
             var dropdownMenu = document.querySelector(".dropdown-menu");
