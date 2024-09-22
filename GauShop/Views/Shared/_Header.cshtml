@@ -17,8 +17,8 @@
         </a>
 
         <div class="d-lg-none">
-            <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
-            <a href="product-detail.html" class="bi-bag custom-icon"></a>
+            <a href="sign-in" class="bi-person custom-icon me-3"></a>
+            <a href="product-detail" class="bi-bag custom-icon"></a>
         </div>
         
 
@@ -29,7 +29,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="ViewStory" asp-controller="Story">Story</a>
+                    <a class="nav-link" asp-action="ViewStory" asp-controller="Story">About Us</a>
                 </li>
 
                 <li class="nav-item">
@@ -37,7 +37,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="ViewFaqs" asp-controller="FAQs">FAQs</a>
+                    <a class="nav-link" asp-action="ViewFaqs" asp-controller="FAQs">Services</a>
                 </li>
 
                 <li class="nav-item">
@@ -50,18 +50,28 @@
                 {
                     @if (Model.sessionId != null)
                     {
-                        <a asp-controller="Cart" asp-action="ViewCart" class="bi-bag custom-icon" style="margin-right: 30px;font-size:22px;">
+                        @* <a asp-controller="Cart" asp-action="ViewCart" class="bi-bag custom-icon" style="font-size:22px;">
                             <span style="color: white;" class="badge">@Model.cart.cartitems.Count</span>
+                        </a> *@
+                        <a asp-controller="Cart" asp-action="ViewCart" class="bi-bag custom-icon" style="font-size:22px;">
+                            @if (Model.cart != null && Model.cart.cartitems != null)
+                            {
+                                <span style="color: white;" class="badge">@Model.cart.cartitems.Count</span>
+                            }
+                            else
+                            {
+                                <span style="color: white;" class="badge">0</span>
+                            }
                         </a>
-                        <a class="btn btn-dark dropdown-toggle" >
+                        <a class="btn dropdown-toggle" >
                             <!-- <img src="~/images/akita.jpg"/> -->
-                            <span style="color: white">@Model.sessionName</span>
+                            <span style="color: black">@Model.sessionName</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item bi-bag custom-icon" href="#">My Account</a></li>
-                            <li><a class="dropdown-item" href="#">Order</a></li>
-                            <li><a class="dropdown-item" href="#">Favorite Products</a></li>
-                            <li><a class="dropdown-item" asp-action="Logout" asp-controller="SignIn">Logout</a></li>
+                            <li><a class="dropdown-item bi-person custom-icon" href="#"> My Account</a></li>
+                            <li><a class="dropdown-item bi-cart" href="#"> Order</a></li>
+                            <li><a class="dropdown-item bi-box" href="#"> Fav Products</a></li>
+                            <li><a class="dropdown-item bi-box-arrow-in-left" asp-action="Logout" asp-controller="SignIn"> Logout</a></li>
 
                             <!-- Thêm các mục khác tại đây -->
                         </ul>
@@ -69,8 +79,10 @@
                     }
                     else
                     {
-                        <a asp-controller="SignUp" asp-action="ViewSignUp" style="margin-right: 20px;" class="btn btn-dark">Sign Up</a>
-                        <a asp-controller="SignIn" asp-action="ViewSignIn" class="btn btn-orange" >Sign In</a>
+                        <div class="btn-log">
+                            <a asp-controller="SignUp" asp-action="ViewSignUp" class="btn btn-sign nav-link bi-person-plus"> Sign Up</a>
+                            <a asp-controller="SignIn" asp-action="ViewSignIn" class="btn btn-signIn nav-link bi-box-arrow-in-right"> Sign In</a>
+                        </div>
                     }
                 }
             </div>
@@ -102,7 +114,17 @@
     </script>
 </nav>
 <!-- Header End -->
+
+<!-- JAVASCRIPT FILES -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/Headroom.js"></script>
+<script src="js/jQuery.headroom.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/custom.js"></script>
+
 <style>
+    
     .btn-dark img {
         /* Add your desired styles here */
         width: 40px; /* Example: Set width */
@@ -110,25 +132,41 @@
         border-radius: 50px; /* Example: Add rounded corners */
         padding: 5px; /* Example: Add padding */
     }
+    .btn-log{
+        display:flex;
+    }
+    .nav-link{
+        color:#000;
+        font-weight: bold;
+    }
+
+    .nav-link:hover {
+        font-weight: bolder;
+    }
+    .bi-bag.custom-icon {
+        position: relative; /* Đặt vị trí của giỏ hàng để badge bám theo */
+    }
 
     .badge {
         position: absolute;
-        top: 17px; /* Điều chỉnh vị trí đứng trên đầu giỏ hàng */
-        right: 177px; /* Điều chỉnh vị trí so với biểu tượng giỏ hàng */
+        top: -10px; /* Điều chỉnh vị trí đứng trên giỏ hàng */
+        right: -15px; /* Điều chỉnh vị trí ngang so với giỏ hàng */
         background-color: red;
         color: white;
         border-radius: 50%;
-        padding: 5px;
+        padding: 6px;
         font-size: 12px;
     }
+
     .dropdown-toggle:hover + .dropdown-menu {
         display: block;
     }
 
     .dropdown-menu {
         display: none;
+        margin-left: 75px !important;
         position: absolute;
-        background-color: grey;
+        background-color: #fff;
         width: 10rem;
         padding: .5rem 0;
         margin: .125rem 0 0;
@@ -146,16 +184,15 @@
         color: black;
         font-weight: 600;
         border-radius: 5px;
-        
     }
 
-    .dropdown-item:hover {
-        background: #FF4400;
-    }
+        .dropdown-item:hover {
+            background: #FF4400;
+        }
 
-    .dropdown-item:active {
-        color: grey;
-    }
+        .dropdown-item:active {
+            color: grey;
+        }
 
     .btn-orange {
         background: #FF4400;
@@ -166,16 +203,8 @@
         color: white;
     }
 
-    .btn-dark:hover {
-        color: #FF4400;
-    }
+        .btn-dark:hover {
+            color: #FF4400;
+        }
 
 </style>
-
-<!-- JAVASCRIPT FILES -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/Headroom.js"></script>
-<script src="js/jQuery.headroom.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/custom.js"></script>

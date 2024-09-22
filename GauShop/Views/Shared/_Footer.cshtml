@@ -1,47 +1,88 @@
 ﻿<!-- Footer Start -->
-<footer class="site-footer">
+<footer class="site-footer" style="border-top: 1px solid #000;">
     <div class="container">
         <div class="row">
 
             <div class="col-lg-3 col-10 me-auto mb-4">
-                <h4 class="text-white mb-3"><a href="index.html">Little</a> Fashion</h4>
-                <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little Fashion</strong></p>
+                <h4 class="text-dark mb-3"><a href="#" id="boli">Boli</a> Shop</h4>
+                <p class="copyright-text text-muted mt-lg-1 mb-4 mb-lg-0">Phone: 0986572812 - </p>
+                <p class="copyright-text text-muted">Email: Boli@gmail.com</p>
                 <br>
-                <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
+                <p class="copyright-text">Designed by <a href="https://www.facebook.com/BoliJewelleryy" target="_blank">Boli Company</a></p>
             </div>
 
             <div class="col-lg-5 col-8">
-                <h5 class="text-white mb-3">Sitemap</h5>
+                <h4 class="text-dark mb-3"><a href="#" id="boli">Boli</a> Glass Jewelry Company</h4>
 
                 <ul class="footer-menu d-flex flex-wrap">
-                    <li class="footer-menu-item"><a asp-action="ViewStory" asp-controller="Story" class="footer-menu-link">Story</a></li>
+                    <li class="footer-menu-item"><a asp-action="ViewStory" asp-controller="Story" class="footer-menu-link">About Us</a></li>
 
                     <li class="footer-menu-item"><a asp-action="ViewProducts" asp-controller="Product" class="footer-menu-link">Products</a></li>
 
-                    <li class="footer-menu-item"><a href="#" class="footer-menu-link">Privacy policy</a></li>
-
-                    <li class="footer-menu-item"><a asp-action="ViewFaqs" asp-controller="FAQs" class="footer-menu-link">FAQs</a></li>
+                    <li class="footer-menu-item"><a asp-action="ViewFaqs" asp-controller="FAQs" class="footer-menu-link">Services</a></li>
 
                     <li class="footer-menu-item"><a asp-action="ViewContact" asp-controller="Contact" class="footer-menu-link">Contact</a></li>
                 </ul>
             </div>
 
             <div class="col-lg-3 col-4">
-                <h5 class="text-white mb-3">Social</h5>
-
+                <h4 class="text-dark mb-3">So<strong id="boli">cial</strong></h4>
+                <a href="https://www.facebook.com/BoliJewelleryy">
+                    <img src="~/images/header/logo.jpg" class="img-fluid" alt="" style="width:200px; height:120px;">
+                </a>
                 <ul class="social-icon">
 
-                    <li><a href="#" class="social-icon-link bi-youtube"></a></li>
+                    <li><a href="https://www.facebook.com/BoliJewelleryy" class="social-icon-link bi-facebook"></a></li>
+                    <li><a href="https://www.instagram.com/boli_jewerllry" class="social-icon-link bi-instagram"></a></li>
 
-                    <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-
-                    <li><a href="#" class="social-icon-link bi-instagram"></a></li>
+                    <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>                    
 
                     <li><a href="#" class="social-icon-link bi-skype"></a></li>
                 </ul>
+                
             </div>
 
         </div>
     </div>
 </footer>
 <!-- Footer Start -->
+<style>
+    .site-footer {
+        background-color: #fff; /* Màu nền trắng */
+        color: #000; /* Màu chữ đen nhạt */
+    }
+
+        .site-footer h4, .site-footer h5 {
+            color: #000;
+            font-weight:600;/* Màu tiêu đề đen nhạt */
+        }
+
+        .site-footer a {
+            color: #000;
+            font-weight: 400; /* Màu link xanh dương để dễ nhìn trên nền trắng */
+        }
+
+            .site-footer a:hover {
+                color: #000;
+                font-weight: bold; /* Màu link khi hover */
+            }
+
+    .footer-menu-link {
+        color: #000; /* Màu chữ trong menu footer */
+    }
+
+    .social-icon-link {
+        margin: 0 13px;
+        color: #000; /* Màu icon mạng xã hội đen nhạt */
+    }
+    #boli{
+        font-weight: bolder;
+        color: #ff4400;
+    }
+
+    
+    /* #boli:hover {
+            color: #ff4400;
+            font-weight: bolder;
+    } */
+</style>
