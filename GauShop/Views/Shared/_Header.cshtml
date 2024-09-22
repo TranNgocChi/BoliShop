@@ -25,23 +25,23 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                    <a class="nav-link" asp-action="Index" asp-controller="Home">Trang Chủ</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="ViewStory" asp-controller="Story">About Us</a>
+                    <a class="nav-link" asp-action="ViewStory" asp-controller="Story">Về Chúng Tôi</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="ViewProducts" asp-controller="Product">Products</a>
+                    <a class="nav-link" asp-action="ViewProducts" asp-controller="Product">Sản Phẩm</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="ViewFaqs" asp-controller="FAQs">Services</a>
+                    <a class="nav-link" asp-action="ViewFaqs" asp-controller="FAQs">Dịch Vụ</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" asp-action="ViewContact" asp-controller="Contact">Contact</a>
+                    <a class="nav-link" asp-action="ViewContact" asp-controller="Contact">Liên Hệ</a>
                 </li>
             </ul>
 
@@ -68,10 +68,10 @@
                             <span style="color: black">@Model.sessionName</span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item bi-person custom-icon" href="#"> My Account</a></li>
-                            <li><a class="dropdown-item bi-cart" href="#"> Order</a></li>
-                            <li><a class="dropdown-item bi-box" href="#"> Fav Products</a></li>
-                            <li><a class="dropdown-item bi-box-arrow-in-left" asp-action="Logout" asp-controller="SignIn"> Logout</a></li>
+                            <li><a class="dropdown-item bi-person custom-icon" href="#"> Tài Khoản Của Tôi</a></li>
+                            <li><a class="dropdown-item bi-cart" href="#"> Đặt Hàng</a></li>
+                            <li><a class="dropdown-item bi-box" href="#"> Mục Yêu Thích</a></li>
+                            <li><a class="dropdown-item bi-box-arrow-in-left" asp-action="Logout" asp-controller="SignIn"> Đăng Xuất</a></li>
 
                             <!-- Thêm các mục khác tại đây -->
                         </ul>
@@ -80,8 +80,8 @@
                     else
                     {
                         <div class="btn-log">
-                            <a asp-controller="SignUp" asp-action="ViewSignUp" class="btn btn-sign nav-link bi-person-plus"> Sign Up</a>
-                            <a asp-controller="SignIn" asp-action="ViewSignIn" class="btn btn-signIn nav-link bi-box-arrow-in-right"> Sign In</a>
+                            <a asp-controller="SignUp" asp-action="ViewSignUp" class="btn btn-sign nav-link bi-person-plus"> Đăng Ký</a>
+                            <a asp-controller="SignIn" asp-action="ViewSignIn" class="btn btn-signIn nav-link bi-box-arrow-in-right"> Đăng Nhập</a>
                         </div>
                     }
                 }
@@ -167,7 +167,7 @@
         margin-left: 75px !important;
         position: absolute;
         background-color: #fff;
-        width: 10rem;
+        width: 12rem;
         padding: .5rem 0;
         margin: .125rem 0 0;
         font-size: 1rem;

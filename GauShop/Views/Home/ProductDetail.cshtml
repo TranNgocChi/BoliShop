@@ -6,19 +6,19 @@
         var popularProducts = Model.products?.OrderBy(p => Guid.NewGuid()).Take(6).ToList();
     }
 
-    <header class="site-header section-padding d-flex justify-content-center align-items-center">
+   @*  <header class="site-header section-padding d-flex justify-content-center align-items-center">
         <div class="container">
             <div class="row">
 
                 <div class="col-lg-10 col-12">
                     <h1>
-                        <span class="d-block text-primary">We provide you</span>
-                        <span class="d-block text-dark">Fashionable Stuffs</span>
+                    <span class="d-block text-primary">Chúng tôi cung cấp cho bạn</span>
+                    <span class="d-block text-dark">Những thời trang  mới</span>
                     </h1>
                 </div>
             </div>
         </div>
-    </header>
+    </header> *@
 
     <section class="product-detail section-padding">
     
@@ -48,7 +48,7 @@
 
                     <div class="product-description">
 
-                        <h5 class="d-block mb-2">Description</h5>
+                        <h5 class="d-block mb-2">Mô Tả</h5>
 
                         <p class=" mb-5" style="color: black;">@foundProduct.description</p>
                     </div>
@@ -56,7 +56,7 @@
                         <form class="addtocart-form" method="POST" asp-action="AddToCart" asp-controller="Cart">
                             <div class="col-lg-6 col-12">
                                 <div class="mb-3" style="display: flex;">
-                                    <label for="sizeButtons" class="form-label" style="margin-right: 15px; margin-top: 5px;">Size: </label>
+                                    <label for="sizeButtons" class="form-label" style="margin-right: 15px; margin-top: 5px;">Kích Thước: </label>
                                     <div class="btn-group" role="group" aria-label="Size" id="sizeButtons">
                                         <input type="radio" class="btn-check" name="size" id="sizeX" autocomplete="off" value="X">
                                         <label class="btn btn-size" for="sizeX">8</label>
@@ -70,18 +70,18 @@
                                 </div>
                                 <div class="mb-3">
                                     <div style="display: flex; align-items: center;">
-                                        <label for="colorSelect" class="form-label me-2">Color:</label>
+                                        <label for="colorSelect" class="form-label me-2">Màu:</label>
                                         <select class="form-select custom-select" id="colorSelect" name="color">
-                                            <option selected>Black</option>
-                                            <option value="red">Red</option>
-                                            <option value="blue">Blue</option>
-                                            <option value="green">Green</option>
+                                            <option selected>Đen</option>
+                                            <option value="red">Đỏ</option>
+                                            <option value="blue">Xanh dương</option>
+                                            <option value="green">Xanh lá</option>
                                             <!-- Thêm các tùy chọn màu khác nếu cần -->
                                         </select>
                                     </div>
 
                                     <div class="input-group mt-3">
-                                        <label for="colorSelect" class="form-label me-2">Quantity: </label>
+                                        <label for="colorSelect" class="form-label me-2">Số Lượng: </label>
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-black decrease" type="button" onclick="decreaseQuantity()">&minus;</button>
                                         </div>
@@ -97,30 +97,30 @@
                             <div class="col-lg-6 col-12 mt-4 mt-lg-0">
                             
                                 <input type="hidden" name="id" value="@foundProduct.id" />
-                                <button type="submit" class="btn custom-btn cart-btn" >Add to Cart</button>
+                                <button type="submit" class="btn custom-btn cart-btn" >Thêm Vào Giỏ Hàng</button>
 
                                 <div id="popupModal" class="popup-modal">
                                     <div class="popup-content">
                                         <div class="popup-header">
-                                            <h5 class="popup-title">Success!</h5>
+                                            <h5 class="popup-title">Thành Công!</h5>
                                             <button type="button" id="closeBtn" class="close-btn">×</button>
                                         </div>
                                         <div class="popup-body">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-check-circle text-success mb-3" viewBox="0 0 16 16">
                                                 <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM6.5 11.793l-2.146-2.147a.5.5 0 1 1 .708-.708l1.5 1.5a.5.5 0 0 0 .708 0l3.5-3.5a.5.5 0 1 1 .708.708l-4 4a.5.5 0 0 1-.708 0Z" />
                                             </svg>
-                                            <p>You added to cart successfully!</p>
-                                            <p>Please check your cart</p>
-                                            <p>Gau Shopping now!</p>
+                                            <p>Bạn đã thêm vào giỏ hàng thành công!</p>
+                                            <p>Vui lòng kiểm tra giỏ hàng của bạn</p>
+                                            <p>Cùng Boli Mua Sắm Ngay!</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </form>
                         <p>
-                            <a href="#" class="product-additional-link">Details</a>
+                            <a href="#" class="product-additional-link">Chi Tiết</a>
 
-                            <a href="#" class="product-additional-link">Delivery and Payment</a>
+                            <a href="#" class="product-additional-link">Giao hàng và thanh toán</a>
                         </p>
                     </div>
 
@@ -136,7 +136,7 @@
             <div class="row">
 
                 <div class="col-12">
-                    <h3 class="mb-5">You might also like</h3>
+                <h3 class="mb-5">Có Thể Bạn Sẽ Thích</h3>
                 </div>
                 @foreach (var p in popularProducts)
                 {
